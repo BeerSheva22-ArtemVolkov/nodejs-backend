@@ -1,0 +1,17 @@
+{
+  "name": "nodejs-application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "console-appl.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "config": "^3.3.9",
+    "prompt-sync": "^4.2.0"
+  }
+}

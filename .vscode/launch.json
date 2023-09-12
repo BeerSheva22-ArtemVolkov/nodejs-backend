@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\console-appl.js",
+            "program": "${workspaceFolder}\\appl-streams.js",
             "env": {
                 "NODE_ENV": "production"
             }

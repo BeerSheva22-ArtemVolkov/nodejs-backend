@@ -11,9 +11,10 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\appl-streams.js",
+            "program": "${workspaceFolder}\\mongo-appl.js",
             "env": {
-                "NODE_ENV": "production"
+                "NODE_ENV": "production",
+                "ATLAS_URI": "mongodb+srv://root:artem1234@cluster0.oinopsu.mongodb.net/college?retryWrites=true&w=majority"
             }
         }       
     ]

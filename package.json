@@ -12,6 +12,7 @@
   "type": "module",
   "dependencies": {
     "config": "^3.3.9",
+    "mongodb": "^6.0.0",
     "prompt-sync": "^4.2.0"
   }
 }

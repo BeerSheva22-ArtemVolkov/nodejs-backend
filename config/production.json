@@ -1,5 +1,9 @@
 {
     "mongodb": {
-        "env_uri": "ATLAS_URI_ACCOUNTS_PROD"
+        "env_uri": "ATLAS_URI_COMPANY_PROD"
+    },
+    "jwt": {
+        "env_secret": "JWT_SECRET_PROD",
+        "expiresIn": "30d"
     }
 }

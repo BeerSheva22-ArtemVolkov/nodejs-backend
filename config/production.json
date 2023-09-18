@@ -1,3 +1,5 @@
 {
-    "test": false
+    "mongodb": {
+        "env_uri": "ATLAS_URI_ACCOUNTS_PROD"
+    }
 }

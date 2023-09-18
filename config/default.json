@@ -1,5 +1,9 @@
 {
     "server": {
         "port": 3500
+    },
+    "mongodb": {
+        "env_uri": "ATLAS_URI_ACCOUNTS_TEST",
+        "db": "users"
     }
 }

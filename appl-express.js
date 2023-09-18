@@ -6,7 +6,7 @@ import errorHandler from './middleware/errorHandler.mjs';
 
 const app = express();
 
-app.use(express.json());
+// app.use(express.json());
 // app.use((req, resp, next) => {
 //     req.body.add = 100;
 //     next();

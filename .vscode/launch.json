@@ -13,7 +13,7 @@
             ],
             "program": "${workspaceFolder}\\appl-express.js",
             "env": {
-                "ATLAS_URI": "mongodb+srv://root:artem1234@cluster0.oinopsu.mongodb.net/college?retryWrites=true&w=majority"
+                "ATLAS_URI_ACCOUNTS_TEST": "mongodb+srv://root:artem1234@cluster0.oinopsu.mongodb.net/users?retryWrites=true&w=majority"
             }
         }       
     ]

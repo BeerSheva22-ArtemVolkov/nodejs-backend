@@ -12,6 +12,7 @@ export default class UsersService {
     #collection;
 
     constructor() {
+        // const connection_string = "mongodb+srv://root:artem1234@cluster0.oinopsu.mongodb.net/company?retryWrites=true&w=majority";
         const connection_string = process.env[config.get(MONGO_ENV_URI)]
         const dbName = config.get(MONGO_DB_NAME)
         const connection = new MongoConnection(connection_string, dbName);
@@ -70,6 +71,7 @@ function toAccount(accountDB) {
 }
 
 function getJwt(username, roles) {
+    console.log(process.env[config.get(ENV_JWT_SECRET)]);
     return jwt.sign(
         {
             roles

@@ -3,7 +3,6 @@ import MongoConnection from '../domain/MongoConnection.mjs';
 
 const MONGO_ENV_URI = 'mongodb.env_uri'; // из config/default.json
 const MONGO_DB_NAME = 'mongodb.db'; // из config/default.json
-const ENV_JWT_SECRET = 'jwt.env_secret'; // из config/default.json
 
 export default class EmployeesService {
 
@@ -11,6 +10,7 @@ export default class EmployeesService {
 
     constructor() {
         const connection_string = process.env[config.get(MONGO_ENV_URI)]
+        // const connection_string = "mongodb+srv://root:artem1234@cluster0.oinopsu.mongodb.net/company?retryWrites=true&w=majority"
         const dbName = config.get(MONGO_DB_NAME)
         const connection = new MongoConnection(connection_string, dbName);
         this.#collection = connection.getCollection('employees');
@@ -86,6 +86,6 @@ function toEmployee(document) {
         ...document,
         id: document._id
     }
-    delete document._id;
+    delete employee._id;
     return employee;
 }

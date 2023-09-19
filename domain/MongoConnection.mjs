@@ -5,8 +5,9 @@ export default class MongoConnection {
     #db;
     #client;
 
-    constructor(uri, dbName){
-        this.#client = new MongoClient(uri);
+    constructor(connection_string, dbName){
+        console.log(connection_string, dbName);
+        this.#client = new MongoClient(connection_string);
         this.#db = this.#client.db(dbName);
     }
 

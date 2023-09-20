@@ -20,12 +20,16 @@ const schema = Joi.object({
 })
 
 employees.use(validate(schema))
+// Delete Employee 
 employees.delete('/:id', authVerification("ADMIN"), asyncHandler(
     async (req, res) => {
         const id = +req.params.id
         if (!await employeesService.deleteEmployee(id)) {
             res.status(404);
             throw `employee with id ${id} not found`;
+        }
+        if (req.wss) {
+            req.wss.clients.forEach(client => client.send(JSON.stringify({ op: "delete", data: id })));
         }
         res.send();
     }
@@ -43,6 +47,7 @@ employees.post('', authVerification("ADMIN"), valid, asyncHandler(
     }
 ))
 
+// Get Employee
 employees.get('/:id', authVerification("ADMIN", "USER"), asyncHandler(
     async (req, res) => {
         const id = +req.params.id
@@ -55,6 +60,7 @@ employees.get('/:id', authVerification("ADMIN", "USER"), asyncHandler(
     }
 ))
 
+// Update Employee
 employees.put('/:id', authVerification("ADMIN"), valid, asyncHandler(
     async (req, res) => {
         if (req.params.id != req.body.id) {
@@ -65,6 +71,9 @@ employees.put('/:id', authVerification("ADMIN"), valid, asyncHandler(
         if (!employee) {
             res.status(404);
             throw `employee with id ${req.body.id} doesn't exist`
+        }
+        if (req.wss) {
+            req.wss.clients.forEach(client => client.send(JSON.stringify({ op: "update", data: employee })));
         }
         res.send(employee);
     }

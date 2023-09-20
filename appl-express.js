@@ -13,19 +13,21 @@ const app = express();
 const expressWsInstant = expressWs(app); // подключение ws сервера с express 
 const wss = expressWsInstant.getWss();
 
-
 app.use(cors());
 app.use(bodyParser.json()); // Разбор JSON-данных
 app.use(morgan('tiny'));
 app.use(auth);
 app.ws('/employees/websocket', (ws, req) => {
-    console.log(`connection from ${req.socket.remoteAddress}`);
-    // ws.send('hi')
-    // wss.clients.forEach(clientSocket => clientSocket.send(`Number of collections is ${wss.clients.size}`))
-    
+    console.log(`connection from ${req.socket.remoteAddress} with ${ws.protocol}`);
+    ws.send('hi')
+    wss.clients.forEach(clientSocket => clientSocket.send(`Number of collections is ${wss.clients.size}`))
 })
-app.use('/users', users);
+app.use((req, res, next) => {
+    req.wss = wss;
+    next();
+})
 app.use('/employees', employees);
+app.use('/users', users);
 
 const port = process.env.PORT || config.get('server.port');
 const server = app.listen(port);

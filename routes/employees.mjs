@@ -31,6 +31,7 @@ employees.delete('/:id', authVerification("ADMIN"), asyncHandler(
     }
 ))
 
+// Add Employee
 employees.post('', authVerification("ADMIN"), valid, asyncHandler(
     async (req, res) => {
         const employeeRes = await employeesService.addEmployee(req.body);
@@ -38,7 +39,6 @@ employees.post('', authVerification("ADMIN"), valid, asyncHandler(
             res.status(400);
             throw `account ${req.body.username} already exists`
         }
-
         res.status(201).send(employeeRes);
     }
 ))
@@ -61,7 +61,7 @@ employees.put('/:id', authVerification("ADMIN"), valid, asyncHandler(
             res.status(400);
             throw `id in request parameter (${req.params.id}) doesn't match the id in employee object (req.body.id)`
         }
-        const employee = await employeesService.updateEmployee(req.body); //TODO
+        const employee = await employeesService.updateEmployee(req.body);
         if (!employee) {
             res.status(404);
             throw `employee with id ${req.body.id} doesn't exist`

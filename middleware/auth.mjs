@@ -10,7 +10,7 @@ const auth = (req, res, next) => {
             const payload = jwt.verify(accessToken, process.env[config.get('jwt.env_secret')]);//2 арг - секьюрити ключ
             req.user = { username: payload.sub, roles: payload.roles }
         } catch (error) {
-
+            
         }
     }
     next();

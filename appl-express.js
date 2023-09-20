@@ -11,7 +11,7 @@ import auth from './middleware/auth.mjs';
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // Разбор JSON-данных
 app.use(morgan('tiny'));
 app.use(auth);
 app.use('/users', users);

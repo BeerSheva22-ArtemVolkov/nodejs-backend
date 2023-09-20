@@ -7,13 +7,23 @@ import morgan from 'morgan';
 import config from 'config'
 import errorHandler from './middleware/errorHandler.mjs';
 import auth from './middleware/auth.mjs';
+import expressWs from 'express-ws';
 
 const app = express();
+const expressWsInstant = expressWs(app); // подключение ws сервера с express 
+const wss = expressWsInstant.getWss();
+
 
 app.use(cors());
 app.use(bodyParser.json()); // Разбор JSON-данных
 app.use(morgan('tiny'));
 app.use(auth);
+app.ws('/employees/websocket', (ws, req) => {
+    console.log(`connection from ${req.socket.remoteAddress}`);
+    // ws.send('hi')
+    // wss.clients.forEach(clientSocket => clientSocket.send(`Number of collections is ${wss.clients.size}`))
+    
+})
 app.use('/users', users);
 app.use('/employees', employees);
 
